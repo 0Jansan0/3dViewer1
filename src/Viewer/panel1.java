@@ -10,37 +10,44 @@ public class panel1 extends JPanel implements Runnable{
 
 	Thread hiloJuego;
 
-	Line2D[] lines = new Line2D[3];
+	Line2D.Double[] lines = new Line2D.Double[3];
 	
 
 	/*	-------------------- COORDENADAS ----------------------
 	 * 	
 	* 				z
-	*   		 |
+	*   	  1  | 
 	*   		 |
 	* 	 		 |
 	*    		 |
 	* 	 		 |
-	*    	 	 |
+	*    	  2  | 1               2
 	*   		 ------------------ y
-	*    		/
+	*    	2	/
 	*    	   /
 	*    	  /
 	*    	 /
-	*       /  x
+	*     1 /  x
 	*      
 	*    
-	*/	   
+	*/	 
 	
+	int Zx1 = 100,Zy1 = 10
+	   ,Zx2 = 100,Zy2 = 100;
+	
+	int Xx1 = 80 ,Xy1 = 180
+	   ,Xx2 = 100,Xy2 = 100;
+
+	int Yx1 = 100,Yy1 = 100,
+	    Yx2 = 200,Yy2 = 100;
+
 	
 	public panel1() {
 	    setBackground(Color.black);
 	    setSize(375, 250);
-	  	//Line2D.Double line = new Line2D.Double(10,10,50,50);
-	  	//lines.add(line);
-	    
-	    
-
+	    lines[0] = new Line2D.Double(Zx1,Zy1,Zx2,Zy2); 
+	    lines[1] = new Line2D.Double(Xx1,Xy1,Xx2,Xy2);
+	    lines[2] = new Line2D.Double(Yx1,Yy1,Yx2,Yy2);
 	}
 	
 	
@@ -112,6 +119,11 @@ public class panel1 extends JPanel implements Runnable{
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D)g;
+	    g2.setStroke(new BasicStroke(3));
+	    g2.setColor(Color.WHITE);
+		for(int i = 0; i <= 2; i++) {
+			g.drawLine((int)lines[i].x1,(int)lines[i].y1,(int)lines[i].x2,(int)lines[i].y2);
+		}
 	}
 	
 }
